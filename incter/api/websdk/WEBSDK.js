@@ -32,8 +32,8 @@ var D, y = {
         ],
         [e, n, t, JSON.stringify(o)]
       );
-    } catch (a) {
-      console.log(a);
+    } catch (l) {
+      console.log(l);
     }
   },
   //获取物体信息 int id,string type
@@ -470,8 +470,8 @@ var D, y = {
         [typeof e, typeof n, typeof t, typeof o],
         [e, n, t, o]
       );
-    } catch (a) {
-      console.log(a);
+    } catch (l) {
+      console.log(l);
     }
   },
   // SetObjectPosition(string id, float x, float y, float z) 设置物体位置
@@ -483,8 +483,8 @@ var D, y = {
         [typeof e, typeof n, typeof t, typeof o],
         [e, n, t, o]
       );
-    } catch (a) {
-      console.log(a);
+    } catch (l) {
+      console.log(l);
     }
   },
   // 加载单个模型
@@ -512,8 +512,8 @@ var D, y = {
         ],
         [e, n, t, o]
       );
-    } catch (a) {
-      console.log(a);
+    } catch (l) {
+      console.log(l);
     }
   },
   // 卸载AB包
@@ -669,7 +669,7 @@ var D, y = {
         t.removeChild(w), c();
       }, 5e3)), c();
     }
-    var a = "/incter/api/model_unity/unity/Build/UnityMain.loader.js", l = {
+    var l = "/incter/api/model_unity/unity/Build/UnityMain.loader.js", a = {
       dataUrl: "/incter/api/model_unity/unity/Build/UnityMain.data",
       frameworkUrl: "/incter/api/model_unity/unity/Build/UnityMain.framework.js",
       codeUrl: "/incter/api/model_unity/unity/Build/UnityMain.wasm",
@@ -679,7 +679,6 @@ var D, y = {
       productVersion: "0.1.0",
       showBanner: o,
       cacheControl: function(u) {
-        return u.match(/\.wasm/) || u.match(/\.data/) ? "immutable" : "no-store";
       }
     };
     if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
@@ -689,9 +688,9 @@ var D, y = {
       e.style.width = "100%", e.style.height = "100%";
     n.style.display = "block";
     var r = document.createElement("script");
-    r.src = a, r.onload = () => {
+    r.src = l, r.onload = () => {
       var u = document.querySelector("#unity-canvas");
-      createUnityInstance(u, l, this.UnityLoading).then((d) => {
+      createUnityInstance(u, a, this.UnityLoading).then((d) => {
         window.unitygameinstance = d, n.style.display = "none";
       }).catch((d) => {
         alert(d);
@@ -1019,7 +1018,7 @@ var D, y = {
       [typeof e],
       [e]
     );
-    return console.log(JSON.parse(JSON.stringify(n))), JSON.parse(JSON.stringify(n));
+    return JSON.parse(JSON.stringify(n));
   },
   //添加Object
   // _AddObject(type, parentId, position, rotation, scale) {
@@ -1047,11 +1046,11 @@ var D, y = {
   //   };
   //   window.unitygameinstance.Module._AddObject(JSON.stringify(data));
   // },
-  _AddObject(e, n, t, o, a) {
-    if (e && n && t && o && a)
+  _AddObject(e, n, t, o, l) {
+    if (e && n && t && o && l)
       alert("参数确少");
     else {
-      var l = {
+      var a = {
         x: t.x,
         y: t.y,
         z: t.z
@@ -1060,13 +1059,13 @@ var D, y = {
         y: o.y,
         z: o.z
       }, r = {
-        x: a.x,
-        y: a.y,
-        z: a.z
+        x: l.x,
+        y: l.y,
+        z: l.z
       }, u = {
         type: e,
         Id: n,
-        position: l,
+        position: a,
         eulerAngle: s,
         localScale: r
       };
@@ -1290,20 +1289,20 @@ var D, y = {
   //   );
   // },
   _FocusObjectOffset(e, n, t, o) {
-    let a = {
+    let l = {
       x: t.x,
       y: t.y,
       z: t.z
-    }, l = null;
-    o != null && (l = {
+    }, a = null;
+    o != null && (a = {
       x: o.x,
       y: o.y,
       z: o.z
     }), window.unitygameinstance.Module.DynCallCSFunc(
       "FocusObjectOffset",
       "iiiii",
-      [typeof e, typeof n, typeof a, typeof l],
-      [e, n, a, l]
+      [typeof e, typeof n, typeof l, typeof a],
+      [e, n, l, a]
     );
   },
   // 新增04/08
@@ -1893,7 +1892,7 @@ var D, y = {
    * wwj
    */
   //unity 加载GLB接口
-  _LoadGlbAsync(e, n, t, o, a) {
+  _LoadGlbAsync(e, n, t, o, l) {
     window.unitygameinstance.Module.DynCallCSFunc(
       "LoadGlbAsyncCS",
       "viiiii",
@@ -1902,9 +1901,9 @@ var D, y = {
         typeof n,
         typeof t,
         typeof o,
-        typeof a
+        typeof l
       ],
-      [e, n, t, o, a]
+      [e, n, t, o, l]
     );
   },
   // 设置对象可见不可见
@@ -1937,8 +1936,8 @@ var D, y = {
   //异步返回IndexedDB缓存资源url供Uniyt使用
   GetIndexedDBURL(e, n) {
     var t = this.GetValue, o = e.toUpperCase();
-    let a = [];
-    return new Promise((l, s) => {
+    let l = [];
+    return new Promise((a, s) => {
       var r = window.indexedDB, u = r.open(e, 1);
       u.onerror = function(d) {
         console.log("IndexedDB error: " + d.target.errorCode), s("error");
@@ -1946,14 +1945,14 @@ var D, y = {
         var c = u.result, w = c.transaction([o], "readwrite");
         if (Array.isArray(n) == !0)
           n.forEach(async (g, m) => {
-            let h = await t(w, o, g);
-            var S = window.URL || window.webkitURL, p = S.createObjectURL(new Blob([h]));
-            a.push({ name: g, bloburl: p }), m == n.length - 1 && l(a);
+            let b = await t(w, o, g);
+            var S = window.URL || window.webkitURL, p = S.createObjectURL(new Blob([b]));
+            l.push({ name: g, bloburl: p }), m == n.length - 1 && a(l);
           });
         else {
           let g = await t(w, o, n);
           var f = window.URL || window.webkitURL, C = f.createObjectURL(new Blob([g]));
-          a.push({ name: n, bloburl: C }), l(a);
+          l.push({ name: n, bloburl: C }), a(l);
         }
       };
     });
@@ -1962,10 +1961,10 @@ var D, y = {
     if (t == null || t == null || t == "")
       resolve(null);
     else
-      return console.log(t), new Promise((o, a) => {
+      return console.log(t), new Promise((o, l) => {
         let s = e.objectStore(n).get(t);
         s.onerror = function(r) {
-          console.log("事务失败"), a(r);
+          console.log("事务失败"), l(r);
         }, s.onsuccess = function(r) {
           o(s.result);
         };
@@ -1978,10 +1977,10 @@ var D, y = {
         const o = new XMLHttpRequest();
         o.timeout = 6e4, o.open("GET", e), o.responseType = "blob", o.onload = () => {
           if (o.status === 200) {
-            var a = new Uint8Array(o.response);
-            let l = new FileReader();
-            l.readAsDataURL(o.response), l.onload = function(s) {
-              D = l.result.split(",")[1];
+            var l = new Uint8Array(o.response);
+            let a = new FileReader();
+            a.readAsDataURL(o.response), a.onload = function(s) {
+              D = a.result.split(",")[1];
               const r = atob(D);
               var u = new Uint8Array(r.length);
               for (let d = 0; d < r.length; d++)
@@ -2006,22 +2005,22 @@ var D, y = {
   CheckDatabaseExists(e) {
     return new Promise(function(n, t) {
       var o = window.indexedDB;
-      o.databases().then((a) => {
-        e.forEach((l) => {
-          typeof a.find((s) => s.name === l.dbName) > "u" ? (l.isExist = !1, l.keys.forEach((s) => {
+      o.databases().then((l) => {
+        e.forEach((a) => {
+          typeof l.find((s) => s.name === a.dbName) > "u" ? (a.isExist = !1, a.keys.forEach((s) => {
             s.isDownloaded = !1;
-          }), console.log(l)) : l.isExist = !0, console.log("checkdatabase", l);
+          }), console.log(a)) : a.isExist = !0, console.log("checkdatabase", a);
         }), n(e);
       });
     });
   },
   CheckIndexedDBValue(e) {
     var n = e.dbName, t = e.dbName.toUpperCase();
-    return new Promise((o, a) => {
+    return new Promise((o, l) => {
       if (e.isExist == !0) {
-        var l = window.indexedDB, s = l.open(n, 1);
+        var a = window.indexedDB, s = a.open(n, 1);
         s.onerror = function(r) {
-          console.log("IndexedDB error: " + r.target.errorCode), a("error");
+          console.log("IndexedDB error: " + r.target.errorCode), l("error");
         }, s.onsuccess = async function(r) {
           var u = s.result, d = u.transaction([t], "readonly");
           await e.keys.forEach((c) => {
@@ -2090,22 +2089,22 @@ var D, y = {
     else {
       var o = setInterval(() => {
         console.log("loading"), window.unitygameinstance != null && (console.log("loaded"), clearInterval(o));
-      }, 1e3), a;
-      if (window.unitygameinstance == null ? a = 4096 : a = window.performance.memory.jsHeapSizeLimit / 1024 / 1024 - window.unitygameinstance.GetMemoryInfo().totalWASMHeapSize / 1024 / 1024, console.log("availableHeapSize", a), this.modelInfoDict.get(t).heapSizeEstimate < a)
+      }, 1e3), l;
+      if (window.unitygameinstance == null ? l = 4096 : l = window.performance.memory.jsHeapSizeLimit / 1024 / 1024 - window.unitygameinstance.GetMemoryInfo().totalWASMHeapSize / 1024 / 1024, console.log("availableHeapSize", l), this.modelInfoDict.get(t).heapSizeEstimate < l)
         console.log("New Add File"), this.Download();
       else {
         console.log("New Add File By Destroy");
-        var l = [];
+        var a = [];
         modelInfoDict.forEach((r, u) => {
-          l.push({
+          a.push({
             id: u,
             AccessCount: r.AccessCount,
             LastAccessTime: r.LastAccessTime,
             Size: r.heapSizeEstimate
           });
-        }), l = sortByAccessAndTime(l);
+        }), a = sortByAccessAndTime(a);
         var s = 0;
-        l.forEach((r) => {
+        a.forEach((r) => {
           s < this.obj.fileInfo.size && (s += r.Size, modelInfoDict.get(r.id).isNeedDestroy = !0);
         }), modelInfoDict.forEach((r) => {
           r.isNeedDestroy == !0 && r.modelDict.forEach((u) => {
@@ -2119,29 +2118,30 @@ var D, y = {
   },
   CheckDataBase(e, n) {
     return new Promise(function(t, o) {
-      var a = window.indexedDB, a = window.indexedDB;
-      a.databases().then((l) => {
-        l.find((s) => s.name == e) != null ? t(!0) : t(!1);
+      var l = window.indexedDB, l = window.indexedDB;
+      l.databases().then((a) => {
+        a.find((s) => s.name == e) != null ? t(!0) : t(!1);
       });
     });
   },
   CheckDataBaseValueList(e, n, t) {
-    return new Promise((o, a) => {
-      var l = window.indexedDB, s = l.open(n, 1);
+    return new Promise((o, l) => {
+      var a = window.indexedDB, s = a.open(n, 1);
       s.onerror = function(r) {
-        a("error");
+        l("error");
       }, s.onsuccess = async function(r) {
         var u = s.result, d = u.transaction([t], "readonly");
         await e.forEach((c) => {
           d.objectStore(t).get(c.modelID).onsuccess = function(w) {
-            if (typeof w.target.result == "object") {
+            if (typeof w.target.result == "object" && w.target.result != null) {
               c.isDownloaded = !0;
               var f = window.URL || window.webkitURL, C = f.createObjectURL(
                 new Blob([w.target.result])
               );
-              c.blobUrl = C, c.url = void 0;
+              c.blobUrl = C;
             } else
               c.isDownloaded = !1;
+            w.target.result == null && (c.isDownloaded = !1);
           };
         }), d.oncomplete = function() {
           o("success");
@@ -2153,14 +2153,14 @@ var D, y = {
   },
   CheckDataBaseValueTexture(e) {
     var n = "texture", t = "TEXTURE";
-    return new Promise((o, a) => {
-      var l = window.indexedDB, s = l.open(n, 1);
+    return new Promise((o, l) => {
+      var a = window.indexedDB, s = a.open(n, 1);
       s.onerror = function(r) {
-        a("error");
+        l("error");
       }, s.onsuccess = async function(r) {
         var u = s.result, d = u.transaction([t], "readonly");
         d.objectStore(t).get(e.key).onsuccess = function(c) {
-          if (typeof c.target.result == "object") {
+          if (typeof c.target.result == "object" && c.target.result != null) {
             e.isDownloaded = !0;
             var w = window.URL || window.webkitURL, f = w.createObjectURL(
               new Blob([c.target.result])
@@ -2179,8 +2179,8 @@ var D, y = {
   //开启下载
   async startDownload(e, n) {
     y.loadcallback = n;
-    const t = JSON.parse(e), o = t.models, a = t.fileInfo, l = t.texturezip, s = 1e3;
-    this.notiSheets.set(a.id, {
+    const t = JSON.parse(e), o = t.models, l = t.fileInfo, a = t.texturezip, s = 1e3;
+    this.notiSheets.set(l.id, {
       fileCount: o.length,
       notiCount: 0,
       notiFileCount: 0,
@@ -2188,36 +2188,36 @@ var D, y = {
       notiFiles: []
     });
     const r = {
-      id: a.id,
+      id: l.id,
       notiSheetsContext: this.notiSheets,
       view: t.view
     };
     var u = !1;
-    l.key = a.id + l.name;
+    a.key = l.id + a.name;
     var d = await this.CheckDataBase("texture", "TEXTURE");
-    if (d ? (await this.CheckDataBaseValueTexture(l), l.isDownloaded == !1 && (u = !0)) : u = !0, console.log("LoadPictureCheck:", l), u) {
-      const f = await this.downloadFile(l.url);
-      f != null ? l.isNull = !1 : l.isNull = !0, l.blobUrl = await this.SetAndGetIndexedDB(
+    if (d ? (await this.CheckDataBaseValueTexture(a), a.isDownloaded == !1 && (u = !0)) : u = !0, console.log("LoadPictureCheck:", a), u) {
+      const f = await this.downloadFile(a.url);
+      f != null ? a.isNull = !1 : a.isNull = !0, a.blobUrl = await this.SetAndGetIndexedDB(
         "texture",
         "TEXTURE",
-        l.key,
+        a.key,
         f,
         !1
-      ), l.isNull || (this.notiTexture = setInterval(() => {
+      ), a.isNull || (this.notiTexture = setInterval(() => {
         var C;
-        ((C = window.unitygameinstance) == null ? void 0 : C.Module.LoadTextureZipCS) != null && (clearInterval(this.notiTexture), console.log("loaded texture", l), this.LoadPictureU3D(l.blobUrl, l.key));
+        ((C = window.unitygameinstance) == null ? void 0 : C.Module.LoadTextureZipCS) != null && (clearInterval(this.notiTexture), console.log("loaded texture", a), this.LoadPictureU3D(a.blobUrl));
       }, 100));
     } else
-      l.isNull || (this.notiTexture = setInterval(() => {
+      a.isNull || (this.notiTexture = setInterval(() => {
         var f;
-        ((f = window.unitygameinstance) == null ? void 0 : f.Module.LoadTextureZipCS) != null && (console.log("loaded texture", l), clearInterval(this.notiTexture), this.LoadPictureU3D(l.blobUrl));
+        ((f = window.unitygameinstance) == null ? void 0 : f.Module.LoadTextureZipCS) != null && (console.log("loaded texture", a), clearInterval(this.notiTexture), this.LoadPictureU3D(a.blobUrl));
       }, 100));
-    var c = !1, w = await this.CheckDataBase(a.id);
+    var c = !1, w = await this.CheckDataBase(l.id);
     w ? (await this.CheckDataBaseValueList(
       t.models,
-      a.id,
+      l.id,
       "DATA"
-    ), t.models.find((f) => f.isDownloaded == !1) != null && (c = !0)) : c = !0, c ? (console.log("Flow Type"), this.NotiUnity(r), this.downloadFilesConcurrently(o, s, r).then(() => {
+    ), t.models.find((f) => f.isDownloaded == !1) != null && (c = !0)) : c = !0, console.log("CACHE CHECK", t), c ? (console.log("Flow Type"), this.NotiUnity(r), this.downloadFilesConcurrently(o, s, r).then(() => {
       console.log("All files have been downloaded.");
     }).catch((f) => {
       console.error("Error during downloads:", f);
@@ -2236,7 +2236,7 @@ var D, y = {
   },
   notiSheets: /* @__PURE__ */ new Map(),
   async downloadFilesConcurrently(e, n, t) {
-    let o = 0, a = 0, l = [];
+    let o = 0, l = 0, a = [];
     var s = this.downloadFile, r = this.SetAndGetIndexedDB, u = this.notifyUser;
     async function d() {
       if (o >= e.length)
@@ -2250,28 +2250,29 @@ var D, y = {
           g,
           !1
         );
-        f.blobUrl = m, l.push(f), a++, a % 100 === 0 && (u(
-          `Downloaded ${a} files`,
-          l,
+        f.blobUrl = m, a.push(f), l++, l % 100 === 0 && (u(
+          `Downloaded ${l} files`,
+          a,
           t
-        ), l = []);
+        ), a = []);
       } catch (g) {
         console.error(`Error downloading ${C}:`, g);
       }
       await d();
     }
     const c = Array(Math.min(n, e.length)).fill(null).map(d);
-    await Promise.all(c), l.length > 0 && this.notifyUser(
-      `Downloaded ${a} files`,
-      l,
+    await Promise.all(c), a.length > 0 && this.notifyUser(
+      `Downloaded ${l} files`,
+      a,
       t
     );
   },
+  //通知Unity已下载好的信息
   NotiUnity(e) {
     var n = e.notiSheetsContext.get(e.id), t = void 0;
     this.notiUnityByFlow = setInterval(() => {
-      var l, s, r, u;
-      if (((l = window.unitygameinstance) == null ? void 0 : l.Module.AddLoadQueue) == null || ((s = window.unitygameinstance) == null ? void 0 : s.Module.InitCamPos) == null) {
+      var a, s, r, u;
+      if (((a = window.unitygameinstance) == null ? void 0 : a.Module.AddLoadQueue) == null || ((s = window.unitygameinstance) == null ? void 0 : s.Module.InitCamPos) == null) {
         console.log(
           "Waiting for Unity",
           (r = window.unitygameinstance) == null ? void 0 : r.Module.AddLoadQueue,
@@ -2279,26 +2280,26 @@ var D, y = {
         );
         return;
       }
-      if (console.log("NotiUnity ing"), console.log("notiSheet:", n), t = n.notiFiles.find((d) => d.isNoti == !1), console.log("nitiContent:", t), t != null) {
-        t.isNoti = !0, n.notiCount++, n.notiFileCount += t.files.length;
-        var o = n.notiCount === 1 ? 0 : n.notiFileCount === n.fileCount ? 2 : n.notiCount > 1 && n.notiFileCount !== n.fileCount ? 1 : void 0, a = {
+      if (console.log("NotiUnity ing"), t = n.notiFiles.find((d) => d.isNoti == !1), t != null) {
+        t.isNoti = !0, n.notiCount++, n.notiFileCount += t.files.length, console.log("notiSheet:", n);
+        var o = n.notiCount === 1 && n.notiFileCount !== n.fileCount ? 0 : n.notiCount > 1 && n.notiFileCount !== n.fileCount ? 1 : n.notiCount === 1 && n.notiFileCount === n.fileCount ? 3 : n.notiFileCount === n.fileCount ? 2 : void 0, l = {
           models: t.files,
           status: o,
-          maxcount: 500
+          maxcount: t.files.length
         };
         console.log(
           "Send Unity",
           n.notiCount,
           n.notiFileCount,
-          a
-        ), o == 0 && (console.log("InitCamPos", typeof e.view), this.InitCamPos(JSON.stringify(e.view))), this.AddLoadQueue(JSON.stringify(a));
+          l
+        ), (o == 0 || o == 2 || o == 3) && (console.log("InitCamPos", typeof e.view), this.InitCamPos(JSON.stringify(e.view))), this.AddLoadQueue(JSON.stringify(l));
       }
       n.notiFileCount == n.fileCount && (clearInterval(this.notiUnityByFlow), console.log("NotiUnity end"));
     }, 1e3);
   },
   notifyUser(e, n, t) {
     var o = t.notiSheetsContext.get(t.id);
-    console.log("Files:", n, t, o), console.log("notiSheet", o, o == null ? void 0 : o.notiFiles), o.notiFiles.push({ isNoti: !1, files: n }), o.downloadCount += n.length, console.log("notiSheets", o);
+    o.notiFiles.push({ isNoti: !1, files: n }), o.downloadCount += n.length, console.log("notiSheets", o);
   },
   downloadFile(e) {
     try {
@@ -2306,10 +2307,10 @@ var D, y = {
         const o = new XMLHttpRequest();
         o.timeout = 6e4, o.open("GET", e), o.responseType = "blob", o.onload = () => {
           if (o.status === 200) {
-            var a = new Uint8Array(o.response);
-            let l = new FileReader();
-            l.readAsDataURL(o.response), l.onload = function(s) {
-              D = l.result.split(",")[1];
+            var l = new Uint8Array(o.response);
+            let a = new FileReader();
+            a.readAsDataURL(o.response), a.onload = function(s) {
+              D = a.result.split(",")[1];
               const r = atob(D);
               var u = new Uint8Array(r.length);
               for (let d = 0; d < r.length; d++)
@@ -2404,17 +2405,17 @@ var D, y = {
     }
   },
   async AfterDownResource() {
-    var e = this.dbInfos.map(async (a) => {
-      await this.GetIndexedDBBlobUrls(a.dbName, a.keys);
+    var e = this.dbInfos.map(async (l) => {
+      await this.GetIndexedDBBlobUrls(l.dbName, l.keys);
     });
     await Promise.all(e), console.log("url done", this.dbInfos);
-    var n = this.dbInfos.find((a) => a.dbName === "texture");
+    var n = this.dbInfos.find((l) => l.dbName === "texture");
     console.log(n);
-    var t = this.dbInfos.find((a) => a.dbName === "data");
-    e = t.keys.map(async (a) => {
-      await delete a.url;
-    }), await Promise.all(e), console.log(t), e = this.obj.models.map((a) => {
-      delete a.url;
+    var t = this.dbInfos.find((l) => l.dbName === "data");
+    e = t.keys.map(async (l) => {
+      await delete l.url;
+    }), await Promise.all(e), console.log(t), e = this.obj.models.map((l) => {
+      delete l.url;
     }), console.log("obj", this.obj);
     var o = setInterval(() => {
       console.log("module1.unityloadpro 0", y.unityloadpro), y.unityloadpro && (console.log("module1.unityloadpro 1", y.unityloadpro), clearInterval(o), console.log("start call unity api "), this.LoadCallBack(
@@ -2468,15 +2469,14 @@ var D, y = {
   OnLoadAdapter(e, n) {
     var t = y.InitQueue.activeQueue.shift();
     y.modelInfoDict.get(t.id).isInstantiated = !0;
-    var o, a;
-    JSON.parse(t.jsonStr).models.map((l) => {
-      o = l.modelID.replace(".ab", ""), a = y._UUID2ID(o), a == null ? console.log("id.obj is undefined", o) : (y.modelInfoDict.get(t.id).uuidDict.set(o, { instanceID: [JSON.parse(a).id] }), l.copies.map((s) => {
-        a = y._UUID2ID(s.modelID), a == null ? console.log("id.obj is undefined", s.modelID) : y.modelInfoDict.get(t.id).uuidDict.get(o).instanceID.push(JSON.parse(a).id);
+    var o, l;
+    JSON.parse(t.jsonStr).models.map((a) => {
+      o = a.modelID.replace(".ab", ""), l = y._UUID2ID(o), l == null ? console.log("id.obj is undefined", o) : (y.modelInfoDict.get(t.id).uuidDict.set(o, { instanceID: [JSON.parse(l).id] }), a.copies.map((s) => {
+        l = y._UUID2ID(s.modelID), l == null ? console.log("id.obj is undefined", s.modelID) : y.modelInfoDict.get(t.id).uuidDict.get(o).instanceID.push(JSON.parse(l).id);
       }));
     });
   },
   OnLoadAdapterSleep(e, n) {
-    console.log("OnLoadAdapterSleep", e, n);
   },
   AddBlob2U3D(e, n) {
     window.unitygameinstance.Module.DynCallCSFunc(
@@ -2498,17 +2498,17 @@ var D, y = {
       this.temdic(n[t].modelID, n[t].modelID);
       let o = JSON.stringify(n[t].materials);
       this.matdic(n[t].modelID, o);
-      for (let a = 0; a < n[t].copies.length; a++) {
+      for (let l = 0; l < n[t].copies.length; l++) {
         this.temdic(
-          n[t].copies[a].modelID + ".ab",
+          n[t].copies[l].modelID + ".ab",
           n[t].modelID
         );
-        let l = JSON.stringify({
-          x: n[t].copies[a].x,
-          y: n[t].copies[a].y,
-          z: n[t].copies[a].z
+        let a = JSON.stringify({
+          x: n[t].copies[l].x,
+          y: n[t].copies[l].y,
+          z: n[t].copies[l].z
         });
-        this.posdic(n[t].copies[a].modelID + ".ab", l);
+        this.posdic(n[t].copies[l].modelID + ".ab", a);
       }
     }
     console.log("添加完成"), this.loadtestin(e.view);
@@ -2575,14 +2575,14 @@ var D, y = {
       console.log(o);
       try {
         this.beginLoad();
-      } catch (a) {
-        console.log(a);
+      } catch (l) {
+        console.log(l);
       }
     });
   },
   downloadall(e, n) {
     return new Promise((t, o) => {
-      var a = Object.entries(e[1]);
+      var l = Object.entries(e[1]);
       window.unitygameinstance.Module.DynCallCSFunc(
         "ChangeLoadCount",
         "ii",
@@ -2593,10 +2593,10 @@ var D, y = {
         "ii",
         ["number"],
         [1]
-      ), a.length;
-      for (let l = 0; l < a.length; l++) {
-        for (let s = 0; s < a[l][1].out.length; s++) {
-          let r = a[l][1].out[s] + ".ab";
+      ), l.length;
+      for (let a = 0; a < l.length; a++) {
+        for (let s = 0; s < l[a][1].out.length; s++) {
+          let r = l[a][1].out[s] + ".ab";
           window.unitygameinstance.Module.DynCallCSFunc(
             "GetLoadList",
             "ii",
@@ -2604,8 +2604,8 @@ var D, y = {
             [r]
           );
         }
-        for (let s = 0; s < a[l][1].in.length; s++) {
-          let r = a[l][1].in[s] + ".ab";
+        for (let s = 0; s < l[a][1].in.length; s++) {
+          let r = l[a][1].in[s] + ".ab";
           window.unitygameinstance.Module.DynCallCSFunc(
             "GetLoadList",
             "ii",
@@ -2663,49 +2663,49 @@ var D, y = {
   },
   GetIndexedDBBlobUrls(e, n) {
     var t = e.toUpperCase(), o = this.GetValue;
-    return new Promise((a, l) => {
+    return new Promise((l, a) => {
       var s = window.indexedDB, r = s.open(e, 1);
       r.onerror = function(u) {
-        l("error");
+        a("error");
       }, r.onsuccess = async function(u) {
         var d = r.result, c = d.transaction([t], "readwrite");
         n.forEach(async (w, f) => {
           let C = await o(c, t, w.name);
           var g = window.URL || window.webkitURL;
-          w.bloburl = g.createObjectURL(new Blob([C])), f == n.length - 1 && a(n);
+          w.bloburl = g.createObjectURL(new Blob([C])), f == n.length - 1 && l(n);
         });
       };
     });
   },
-  async SetAndGetIndexedDB(e, n, t, o, a) {
-    if (console.log("SetAndGetIndexedDB", e, t, typeof o, a), t == null || t == null || t == "")
+  async SetAndGetIndexedDB(e, n, t, o, l) {
+    if (console.log("SetAndGetIndexedDB", e, t, typeof o), t == null || t == null || t == "")
       resolve("success");
     else
-      return new Promise((l, s) => {
+      return new Promise((a, s) => {
         var r = e, u = n, d = window.indexedDB, c = d.open(r, 1);
         c.onerror = function(w) {
           s("error");
         }, c.onsuccess = function(w) {
           var C = w.target.result.transaction(u, "readwrite"), g = C.objectStore(u);
-          if (a) {
+          if (l) {
             var m = g.get(t);
-            m.onsuccess = function(h) {
+            m.onsuccess = function(b) {
               var S = window.URL || window.webkitURL, p = S.createObjectURL(
-                new Blob([h.target.result])
+                new Blob([b.target.result])
               );
-              l(p);
+              a(p);
             };
           } else {
             var m = g.put(o, t);
             m.onsuccess = function(S) {
               m = g.get(t), m.onsuccess = function(p) {
-                var b = window.URL || window.webkitURL, v = b.createObjectURL(
+                var h = window.URL || window.webkitURL, v = h.createObjectURL(
                   new Blob([p.target.result])
                 );
-                l(v);
+                a(v);
               };
             }, m.onerror = function(S) {
-              l("error");
+              a("error");
             };
           }
         }, c.onupgradeneeded = function(w) {
@@ -2764,6 +2764,23 @@ var D, y = {
       [e]
     );
   },
+  // _SetAllLODsSRTH(ratio) {
+  //   console.log("UnitySetAllLODsSRTH");
+  //   window.unitygameinstance.Module.DynCallCSFunc(
+  //     "SetAllLODsSRTH",
+  //     "vf",
+  //     [typeof ratio],
+  //     [ratio]
+  //   );
+  // },
+  // _ResetGizmoPos() {
+  //   window.unitygameinstance.Module.DynCallCSFunc(
+  //     "ResetGizmoPos",
+  //     "v",
+  //     [],
+  //     []
+  //   );
+  // },
   EnableLog(e) {
     window.unitygameinstance.Module.DynCallCSFunc(
       "EnableLog",
@@ -2772,15 +2789,37 @@ var D, y = {
       [e]
     );
   },
-  LoadPictureU3D(e, n) {
+  LoadPictureU3D(e) {
     window.unitygameinstance.Module.DynCallCSFunc(
       "LoadTextureZipCS",
       "vii",
-      [typeof e, this.AdapterLog],
-      [e, this.OnLog]
+      [typeof e, typeof this.LoadTextureCallback],
+      [e, this.LoadTextureCallback]
     );
   },
-  AdapterLog(e, n, t) {
+  //图片加载成功回调函数
+  LoadTextureCallback(e) {
+  },
+  // //LOD动态配置 0:不设置LOD
+  _SetAllLODsSRTH(e) {
+    var n = setInterval(() => {
+      var t;
+      ((t = window.unitygameinstance) == null ? void 0 : t.Module.SetAllLODsSRTH) != null && (clearInterval(n), window.unitygameinstance.Module.DynCallCSFunc(
+        "SetAllLODsSRTH",
+        "vf",
+        [typeof e],
+        [e]
+      ));
+    }, 1e3);
+  },
+  _ResetGizmoPos() {
+    var e;
+    ((e = window.unitygameinstance) == null ? void 0 : e.Module.ResetGizmoPos) != null && window.unitygameinstance.Module.DynCallCSFunc(
+      "ResetGizmoPos",
+      "v",
+      [],
+      []
+    );
   }
 };
 const i = y, _ = {
@@ -3120,13 +3159,13 @@ const i = y, _ = {
    * wwj
    * **/
   // 下载单个模型
-  LoadGlbAsync(e, n, t, o, a) {
+  LoadGlbAsync(e, n, t, o, l) {
     return i._LoadGlbAsync(
       e,
       n,
       t,
       o,
-      a
+      l
     );
   },
   // 设置对象可见不可见
@@ -3305,8 +3344,8 @@ const i = y, _ = {
     return i._GetObjectChilds(e);
   },
   //添加Object
-  AddObject(e, n, t, o, a) {
-    var l = {
+  AddObject(e, n, t, o, l) {
+    var a = {
       x: t.x,
       y: t.y,
       z: t.z
@@ -3315,13 +3354,13 @@ const i = y, _ = {
       y: o.y,
       z: o.z
     }, r = {
-      x: a.x,
-      y: a.y,
-      z: a.z
+      x: l.x,
+      y: l.y,
+      z: l.z
     }, u = {
       type: e,
       Id: n,
-      position: l,
+      position: a,
       eulerAngle: s,
       localScale: r
     };
@@ -3403,30 +3442,30 @@ const i = y, _ = {
   },
   //看向某个object
   FocusObjectOffset(e, n, t, o) {
-    let a = {
+    let l = {
       x: t.x,
       y: t.y,
       z: t.z
-    }, l = null;
-    return o != null && (l = {
+    }, a = null;
+    return o != null && (a = {
       x: o.x,
       y: o.y,
       z: o.z
-    }), i._FocusObjectOffset(e, n, a, l);
+    }), i._FocusObjectOffset(e, n, l, a);
   },
   //高亮某个object
   HighLightById(e, n, t, o) {
-    let a = null;
-    o.color != null && (a = {
+    let l = null;
+    o.color != null && (l = {
       r: o.color.r,
       g: o.color.g,
       b: o.color.b,
       a: o.color.a
     });
-    let l = {
+    let a = {
       _intensity: o.intensity,
       _isOn: o.isOn,
-      _color: a,
+      _color: l,
       _width: o.width,
       _speed: o.speed,
       _texture: o.texture,
@@ -3435,7 +3474,7 @@ const i = y, _ = {
       _endScale: o.endScale,
       _noise: o.noise
     };
-    return i._HighLightById(e, n, t, l);
+    return i._HighLightById(e, n, t, a);
   },
   Downloade(e) {
     return i._Downloade(e);
@@ -3458,6 +3497,20 @@ const i = y, _ = {
   // 开关鼠标
   EnableMove(e) {
     return i._EnableMove(e);
+  },
+  LookAtPos(e) {
+    let n = {
+      x: e.x,
+      y: e.y,
+      z: e.z
+    };
+    i._LookAtPos(n);
+  },
+  SetAllLODsSRTH(e) {
+    return i._SetAllLODsSRTH(e);
+  },
+  ResetGizmoPos() {
+    i._ResetGizmoPos();
   }
 };
 export {

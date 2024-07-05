@@ -1,0 +1,2 @@
+{"allframes":2077,"time":7.249566,"frame":286.4999}
+{"allframes":2354,"time":7.741285,"frame":304.0839}

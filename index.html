@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="./js/axios.min.js"></script>
+    <script src="./incter/api/websdk/WEBSDK.umd.cjs"></script>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 99.81%;
+            background-color: #2c2c2c;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .buuton {
+            width: auto;
+            height: 45px;
+            text-align: center;
+            background-color: aqua;
+            outline: none;
+            padding: 10px;
+            border-color: aliceblue;
+
+        }
+
+        .fl-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .l_b {
+             position: absolute;
+            top: 20px;
+            left: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .buuton:hover {
+            background-color: aqua;
+            color: aliceblue;
+            cursor: pointer;
+        }
+
+        #UCDunity {
+            width: 100%;
+            height: 100%;
+
+        }
+    </style>
+</head>
+
+<body>
+<div class="fl-container">
+    <div id="UCDunity"></div>
+    <div class="l_b">
+      <button class="buuton" onclick="EnableClick1()">EnableClick1</button>
+		  <button class="buuton" onclick="EnableClick2()">EnableClick2</button>
+      <button id="Byid" class="buuton" onclick="GetPropertyById()">Property</button>
+    </div>
+</div>
+
+<script>
+  (function loadermodel() {
+	  WEBSDK.init();
+      InitModel()
+  })();
+
+  function InitModel() {
+      axios.get('./Models/rac_basic_sample_project.json').then((res) => {
+         if (res) {
+             WEBSDK.InitModel(res.data, callbacks);
+         }
+      })
+  }
+
+  function callbacks(res) {
+      console.log(res);
+  }
+  
+  function asyncAlert(message, timeout) {
+      setTimeout(function() {
+          alert(message);
+      }, timeout);
+  }
+
+  function EnableClick1() {
+      WEBSDK.EnableClick(true, (res) => {
+      	
+      });
+  }
+  
+  function EnableClick2() {
+      WEBSDK.EnableClick(true, (res) => {
+          let str = JSON.parse(res);
+          modelID = str[0].model;
+		      asyncAlert(JSON.stringify(str), 100);
+      });
+  }
+  
+  function GetPropertyById() {
+      let list = WEBSDK.GetPropertyById(modelID, "name");
+      alert(JSON.stringify(list));
+  };
+
+</script>
+</body>
+
+</html>

@@ -545,12 +545,12 @@
                 }, 5e3)),
             y();
         }
-        var a = "/incter/api/model_unity/unity/Build/UnityMain.loader.js",
+        var a = "./incter/api/model_unity/unity/Build/UnityMain.loader.js",
           l = {
-            dataUrl: "/incter/api/model_unity/unity/Build/UnityMain.data",
+            dataUrl: "./incter/api/model_unity/unity/Build/UnityMain.data",
             frameworkUrl:
-              "/incter/api/model_unity/unity/Build/UnityMain.framework.js",
-            codeUrl: "/incter/api/model_unity/unity/Build/UnityMain.wasm",
+              "./incter/api/model_unity/unity/Build/UnityMain.framework.js",
+            codeUrl: "./incter/api/model_unity/unity/Build/UnityMain.wasm",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "DefaultCompany",
             productName: "BIMEngine",

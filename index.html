@@ -106,7 +106,13 @@
 		      asyncAlert(JSON.stringify(str), 100);
       });
   }
-  
+  window.onresize = () => {
+        // document.body.clientWidth
+        // console.log( document.body.clientWidth);
+        setTimeout(() => {
+            WEBSDK.ResetGizmoPos();
+        }, 100);
+      };
   function GetPropertyById() {
       let list = WEBSDK.GetPropertyById(modelID, "name");
       alert(JSON.stringify(list));
